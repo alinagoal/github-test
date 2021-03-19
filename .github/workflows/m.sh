@@ -15,7 +15,7 @@ sudo apt-get install -y jq
  
 #Trigger test run
 TEST_RUN_ID="$( \
-  curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/github/${PROJECT_ID}/events \
+  curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/gitlab/${PROJECT_ID}/events \
     -d 'token='$INTEGRATION_JWT_TOKEN''\
     -d 'projectId='$PROJECT_ID''\
     -d 'triggerType=Deploy'\
@@ -49,3 +49,4 @@ TEST_RUN_RESULT="$( \
   | jq -r '.[0].status' \
 )"
 echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
+
