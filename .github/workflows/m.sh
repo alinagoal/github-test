@@ -3,21 +3,20 @@
 set -ex
  
 PROJECT_ID='332'
-API_KEY='3vVDI23M9HhVc9z7GyDM6LVFxEqfPIN9UH07DWW3'
-CLIENT_ID='cc2df21b5465d8fbcbebe21133d207c7'
+API_KEY='p1VhOZjaqkNtrUikuncEauq3aKFTbFh1BF5L9J0i'
+CLIENT_ID='4caf6bf2599d0428191f4a2ab0cc745a'
 SCOPES=['"ViewTestResults"','"ViewAutomationHistory"']
 API_URL='https://7iggpnqgq9.execute-api.us-east-2.amazonaws.com/udbodh/api'
-INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImdpdGxhYl9wcm9qZWN0X2lkIjoyNDI0NDc1OCwiZ2l0bGFiX3Byb2plY3RfYWNjZXNzX3Rva2VuIjoiZkc0eE5Id2RXTk56UEZ5WEhYcHciLCJpYXQiOjE2MTQ5MjkyMDd9.a8svghZY4NPJbPqimA6eOQZZw8jruj3zRS0HgLauYes'
+INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImFwaV9rZXlfaWQiOjI0ODAsIm5hbWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImljb24iOiIiLCJpbnRlZ3JhdGlvbl9uYW1lIjoiR2l0aHViIiwib3B0aW9ucyI6e30sImlhdCI6MTYxNjE0NDgxNn0.6dUIS6GpJBhTfdIJz4Fxmq68FIbUDxfuFq3-xmNK0bQ'
 INTEGRATIONS_API_URL='http://cb7b818afc6e.ngrok.io'
  
-apt-get update -y
-apt-get install -y jq
+sudo apt-get update -y
+sudo apt-get install -y jq
  
 #Trigger test run
 TEST_RUN_ID="$( \
   curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/github/${PROJECT_ID}/events \
     -d 'token='$INTEGRATION_JWT_TOKEN''\
-    -d 'projectId='$PROJECT_ID''\
     -d 'triggerType=Deploy'\
   | jq -r '.test_run_id')"
  
@@ -49,3 +48,4 @@ TEST_RUN_RESULT="$( \
   | jq -r '.[0].status' \
 )"
 echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
+
