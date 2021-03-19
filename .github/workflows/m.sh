@@ -8,15 +8,16 @@ CLIENT_ID='4caf6bf2599d0428191f4a2ab0cc745a'
 SCOPES=['"ViewTestResults"','"ViewAutomationHistory"']
 API_URL='https://7iggpnqgq9.execute-api.us-east-2.amazonaws.com/udbodh/api'
 INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImFwaV9rZXlfaWQiOjI0ODAsIm5hbWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImljb24iOiIiLCJpbnRlZ3JhdGlvbl9uYW1lIjoiR2l0aHViIiwib3B0aW9ucyI6e30sImlhdCI6MTYxNjE0NDgxNn0.6dUIS6GpJBhTfdIJz4Fxmq68FIbUDxfuFq3-xmNK0bQ'
-INTEGRATIONS_API_URL='http://cb7b818afc6e.ngrok.io'
+INTEGRATIONS_API_URL='http://f1fadec276a6.ngrok.io'
  
-sudo apt-get update -y
-sudo apt-get install -y jq
+apt-get update -y
+apt-get install -y jq
  
 #Trigger test run
 TEST_RUN_ID="$( \
   curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/github/${PROJECT_ID}/events \
     -d 'token='$INTEGRATION_JWT_TOKEN''\
+    -d 'projectId='$PROJECT_ID''\
     -d 'triggerType=Deploy'\
   | jq -r '.test_run_id')"
  
@@ -48,4 +49,3 @@ TEST_RUN_RESULT="$( \
   | jq -r '.[0].status' \
 )"
 echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
-
