@@ -3,8 +3,8 @@
 set -ex
  
 PROJECT_ID='332'
-API_KEY='8reFC8xx0K3JcHfRJ8FgytSl2s16rNj2M0FKehIb'
-CLIENT_ID='19a0fe96a2166756171809975eb9b8ec'
+API_KEY='3vVDI23M9HhVc9z7GyDM6LVFxEqfPIN9UH07DWW3'
+CLIENT_ID='cc2df21b5465d8fbcbebe21133d207c7'
 SCOPES=['"ViewTestResults"','"ViewAutomationHistory"']
 API_URL='https://7iggpnqgq9.execute-api.us-east-2.amazonaws.com/udbodh/api'
 INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImdpdGxhYl9wcm9qZWN0X2lkIjoyNDI0NDc1OCwiZ2l0bGFiX3Byb2plY3RfYWNjZXNzX3Rva2VuIjoiZkc0eE5Id2RXTk56UEZ5WEhYcHciLCJpYXQiOjE2MTQ5MjkyMDd9.a8svghZY4NPJbPqimA6eOQZZw8jruj3zRS0HgLauYes'
