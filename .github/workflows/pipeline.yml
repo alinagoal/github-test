@@ -1,7 +1,7 @@
 variables:
   DOCKER_REGISTRY: 557578698015.dkr.ecr.us-east-2.amazonaws.com
   AWS_DEFAULT_REGION: us-east-2
-  APP_NAME: mytry
+  APP_NAME: github-test
   DOCKER_HOST: tcp://docker:2375
 
 publish:
