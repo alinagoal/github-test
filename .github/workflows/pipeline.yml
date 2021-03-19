@@ -28,6 +28,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-           chmod +x ./m.sh
-           . ./m.sh
+           chmod +x ./workflows/m.sh
+           . ./workflows/m.sh
           
