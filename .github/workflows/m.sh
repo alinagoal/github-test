@@ -7,7 +7,7 @@ API_KEY='p1VhOZjaqkNtrUikuncEauq3aKFTbFh1BF5L9J0i'
 CLIENT_ID='4caf6bf2599d0428191f4a2ab0cc745a'
 SCOPES=['"ViewTestResults"','"ViewAutomationHistory"']
 API_URL='https://7iggpnqgq9.execute-api.us-east-2.amazonaws.com/udbodh/api'
-INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImFwaV9rZXlfaWQiOjI0ODAsIm5hbWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImljb24iOiIiLCJpbnRlZ3JhdGlvbl9uYW1lIjoiR2l0aHViIiwib3B0aW9ucyI6e30sImlhdCI6MTYxNjE0NDgxNn0.6dUIS6GpJBhTfdIJz4Fxmq68FIbUDxfuFq3-xmNK0bQ'
+INTEGRATION_JWT_TOKEN='vdsvs'
 INTEGRATIONS_API_URL='http://cb7b818afc6e.ngrok.io'
  
 sudo apt-get update -y
