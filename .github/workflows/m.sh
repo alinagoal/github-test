@@ -1,24 +1,26 @@
 #!/bin/bash
  
-set -ex
+#set -ex
  
 PROJECT_ID='332'
-API_KEY='NEfy258Tey5UNiQYsJ8HX3YoNrXLc4SG5DxwBdPZ'
-CLIENT_ID='f09ba6f55935528f92a149ae215ecfea'
+API_KEY='xlTTBvkv6V2noPxP3qoej23Id6k9Ldpba3oPezD6'
+CLIENT_ID='35672256ebdda10d59ab8f0227c89712'
 SCOPES=['"ViewTestResults"','"ViewAutomationHistory"']
 API_URL='https://7iggpnqgq9.execute-api.us-east-2.amazonaws.com/udbodh/api'
-INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImFwaV9rZXlfaWQiOjI1MTMsIm5hbWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImljb24iOiIiLCJpbnRlZ3JhdGlvbl9uYW1lIjoiVGVhbWNpdHkiLCJvcHRpb25zIjp7fSwiaWF0IjoxNjE2NDAxNjU2fQ.ISV53yEVmBRtEGHUbS7oLshiTRxoP_VJsWvPKdT2p_Q'
-INTEGRATIONS_API_URL='http://0bc6e98f8ffe.ngrok.io'
+INTEGRATION_JWT_TOKEN='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X2lkIjozMzIsImFwaV9rZXlfaWQiOjI0NDUsIm5hbWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImljb24iOiIiLCJpbnRlZ3JhdGlvbl9uYW1lIjoiR2l0bGFiIiwib3B0aW9ucyI6e30sImlhdCI6MTYxNjEyNzA3OX0.BjiH6mbzpIm72JUkbtQ6VXVoURZB1Q3QhEuH2A3pb88'
+INTEGRATIONS_API_URL='http://8399e43c2df0.ngrok.io'
  
-sudo apt-get update -y
-sudo apt-get install -y jq
+apt-get update -y
+apt-get install -y jq
  
 #Trigger test run
 TEST_RUN_ID="$( \
-  curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/github/${PROJECT_ID}/events \
+  curl -X POST -G ${INTEGRATIONS_API_URL}/api/integrations/gitlab/${PROJECT_ID}/events \
     -d 'token='$INTEGRATION_JWT_TOKEN''\
     -d 'triggerType=Deploy'\
   | jq -r '.test_run_id')"
+  
+echo "$TEST_RUN_ID";
  
 AUTHORIZATION_TOKEN="$( \
   curl -X POST -G ${API_URL}/auth/token \
@@ -48,3 +50,7 @@ TEST_RUN_RESULT="$( \
   | jq -r '.[0].status' \
 )"
 echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
+if [ "$TEST_RUN_RESULT" = "Passed" ]; then
+  exit 0;
+fi
+exit 1;
