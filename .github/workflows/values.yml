@@ -1,3 +1,17 @@
-myRepo:
-  gitProvider: githubTesting
-  path: alinagoal/github-test/.github/workflows
+name: "JFrog CLI Example"
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v1
+        env:
+          JF_ARTIFACTORY_SERVER: ${{ secrets.JF_ARTIFACTORY_SERVER_1 }}
+      - name: Run JFrog CLI
+        run: |
+          chmod +x .github/workflows/m.sh
+           . .github/workflows/m.sh
