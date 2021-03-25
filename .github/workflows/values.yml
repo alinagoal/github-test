@@ -1,0 +1,3 @@
+myRepo:
+  gitProvider: githubTesting
+  path: alinagoal/github-test/.github/workflows
