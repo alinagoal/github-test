@@ -24,9 +24,9 @@ echo "$TEST_RUN_ID";
  
 AUTHORIZATION_TOKEN="$( \
   curl -X POST -G ${API_URL}/auth/token \
-  -H 'x-api-key: '${API_KEY}'' \
-  -H 'client_id: '${CLIENT_ID}'' \
-  -H 'scopes: '${SCOPES}'' \
+  -H 'x-api-key='${API_KEY}'' \
+  -H 'client_id= '${CLIENT_ID}'' \
+  -H 'scopes= '${SCOPES}'' \
   | jq -r '.token')"
  
 # Wait until the test run has finished
