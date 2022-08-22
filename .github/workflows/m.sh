@@ -15,7 +15,7 @@
 
   #Trigger test run
   TEST_RUN_ID="$( \
-    curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/events \
+    curl -X POST -G ${INTEGRATIONS_API_URL}/tables/integrations/github/${PROJECT_ID}/events \
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
     | jq -r '.test_run_id')"
