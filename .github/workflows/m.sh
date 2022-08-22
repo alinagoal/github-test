@@ -21,7 +21,7 @@
     | jq -r '.test_run_id')"
 
   AUTHORIZATION_TOKEN="$( \
-    curl -X POST -G ${API_URL}/auth/token \
+    curl -X POST -G ${API_URL}/auth/tokens \
     -H 'x-api-key: '${API_KEY}'' \
     -H 'client-id: '${CLIENT_ID}'' \
     -H 'scopes: '${SCOPES}'' \
