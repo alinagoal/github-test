@@ -2,7 +2,7 @@
 
   set -ex
 
-  API_KEY='1df2d88975bc9d4d'
+  API_KEY='<replace-with-api-key>'
   INTEGRATIONS_API_URL='https://3000-qualitiai-qualitiapi-dw44sfhe5km.ws-us62.gitpod.io'
   PROJECT_ID='3'
   CLIENT_ID='88b70bc343365e1f4ea9d1481f7cd18b'
