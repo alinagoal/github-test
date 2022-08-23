@@ -18,6 +18,7 @@
     curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/events \
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
+      -d 'triggerType=automatic'\
     | jq -r '.test_run_id')"
 
   AUTHORIZATION_TOKEN="$( \
