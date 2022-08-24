@@ -19,6 +19,7 @@
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
       -d 'triggerType=automatic'\
+      -d 'e2e=false'\
     | jq -r '.test_run_id')"
 
   AUTHORIZATION_TOKEN="$( \
