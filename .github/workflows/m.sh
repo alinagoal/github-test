@@ -19,47 +19,43 @@
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
       -d 'triggerType=automatic'\
-    | jq -r '.test_run_ids')"
-    
-  echo "Test Run IDS ${TEST_RUN_ID}";
-  exit 0;
+    | jq -r '.test_run_id')"
 
-#   AUTHORIZATION_TOKEN="$( \
-#     curl -X POST -G ${API_URL}/auth/token \
-#     -H 'x-api-key: '${API_KEY}'' \
-#     -H 'client-id: '${CLIENT_ID}'' \
-#     -H 'scopes: '${SCOPES}'' \
-#     | jq -r '.token')"
+  AUTHORIZATION_TOKEN="$( \
+    curl -X POST -G ${API_URL}/auth/token \
+    -H 'x-api-key: '${API_KEY}'' \
+    -H 'client-id: '${CLIENT_ID}'' \
+    -H 'scopes: '${SCOPES}'' \
+    | jq -r '.token')"
 
   # Wait until the test run has finished
-#   TOTAL_ITERATION=200
-#   I=1
-#   while : ; do
-#      RESULT="$( \
-#      curl -X GET ${API_URL}/automation-history?project_id=${PROJECT_ID}\&test_run_id=${TEST_RUN_ID} \
-#      -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
-#      -H 'x-api-key: '${API_KEY}'' \
-#     | jq -r '.[0].finished')"
-#     if [ "$RESULT" != null ]; then
-#       break;
-#     if [ "$I" -ge "$TOTAL_ITERATION" ]; then
-#       echo "Exit qualiti execution for taking too long time.";
-#       exit 1;
-#     fi
-#     fi
-#       sleep 15;
-#   done
+  TOTAL_ITERATION=200
+  I=1
+  while : ; do
+     RESULT="$( \
+     curl -X GET ${API_URL}/automation-history?project_id=${PROJECT_ID}\&test_run_id=${TEST_RUN_ID} \
+     -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
+     -H 'x-api-key: '${API_KEY}'' \
+    | jq -r '.[0].finished')"
+    if [ "$RESULT" != null ]; then
+      break;
+    if [ "$I" -ge "$TOTAL_ITERATION" ]; then
+      echo "Exit qualiti execution for taking too long time.";
+      exit 1;
+    fi
+    fi
+      sleep 15;
+  done
 
-#   # # Once finished, verify the test result is created and that its passed
-#   TEST_RUN_RESULT="$( \
-#     curl -X GET ${API_URL}/test-results?test_run_id=${TEST_RUN_ID}\&project_id=${PROJECT_ID} \
-#       -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
-#       -H 'x-api-key: '${API_KEY}'' \
-#     | jq -r '.[0].status' \
-#   )"
-#   echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
-#   if [ "$TEST_RUN_RESULT" = "Passed" ]; then
-#     exit 0;
-#   fi
-#   exit 1;
-  
+  # # Once finished, verify the test result is created and that its passed
+  TEST_RUN_RESULT="$( \
+    curl -X GET ${API_URL}/test-results?test_run_id=${TEST_RUN_ID}\&project_id=${PROJECT_ID} \
+      -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
+      -H 'x-api-key: '${API_KEY}'' \
+    | jq -r '.[0].status' \
+  )"
+  echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
+  if [ "$TEST_RUN_RESULT" = "Passed" ]; then
+    exit 0;
+  fi
+  exit 1;
