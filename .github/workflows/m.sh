@@ -19,7 +19,7 @@
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
       -d 'triggerType=automatic'\
-    | jq -r '.test_run_id')"
+    | jq -r '.test_result_id')"
 
   AUTHORIZATION_TOKEN="$( \
     curl -X POST -G ${API_URL}/auth/token \
