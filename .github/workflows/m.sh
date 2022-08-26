@@ -14,7 +14,7 @@
   sudo apt-get install -y jq
 
   #Trigger test run
-  TEST_RUN_ID="$( \
+  TEST_RESULT_ID="$( \
     curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/events \
       -d 'token='$INTEGRATION_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
@@ -33,7 +33,7 @@
   I=1
   while : ; do
      RESULT="$( \
-     curl -X GET ${API_URL}/automation-history?project_id=${PROJECT_ID}\&test_run_id=${TEST_RUN_ID} \
+     curl -X GET ${API_URL}/test-results?id=${TEST_RESULT_ID} \
      -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
      -H 'x-api-key: '${API_KEY}'' \
     | jq -r '.[0].finished')"
@@ -49,7 +49,7 @@
 
   # # Once finished, verify the test result is created and that its passed
   TEST_RUN_RESULT="$( \
-    curl -X GET ${API_URL}/test-results?test_run_id=${TEST_RUN_ID}\&project_id=${PROJECT_ID} \
+    curl -X GET ${API_URL}/test-results?id=${TEST_RESULT_ID}\&project_id=${PROJECT_ID} \
       -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
       -H 'x-api-key: '${API_KEY}'' \
     | jq -r '.[0].status' \
@@ -59,3 +59,4 @@
     exit 0;
   fi
   exit 1;
+  
