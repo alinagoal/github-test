@@ -33,7 +33,7 @@
   I=1
   while : ; do
      RESULT="$( \
-     curl -X GET ${API_URL}/test-results?id=${TEST_RESULT_ID} \
+     curl -X GET ${INTEGRATIONS_API_URL}/test-results?id=${TEST_RESULT_ID} \
      -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
      -H 'x-api-key: '${API_KEY}'' \
     | jq -r '.[0].finished')"
