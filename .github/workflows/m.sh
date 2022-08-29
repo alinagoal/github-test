@@ -31,7 +31,7 @@
   TOTAL_ITERATION=2
   I=1
   STATUS="Pending"
-  while [$STATUS = "Pending"]
+  while ["${STATUS}" = "Pending"]
   do
      if [ "$I" -ge "$TOTAL_ITERATION" ]; then
       echo "Exit qualiti execution for taking too long time.";
