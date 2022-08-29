@@ -50,14 +50,8 @@
     sleep 1;
   done
 
-  # # Once finished, verify the test result is created and that its passed
-  TEST_RUN_RESULT="$( \
-    curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
-      -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
-      | jq -r '.status' \
-  )"
-  echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
-  if [ "$TEST_RUN_RESULT" = "Pending" ]; then
+  echo "Qualiti E2E Tests returned ${STATUS}"
+  if [ "$TEST_RUN_RESULT" = "Passed" ]; then
     exit 0;
   fi
   exit 1;
