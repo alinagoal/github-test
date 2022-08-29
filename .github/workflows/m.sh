@@ -25,7 +25,8 @@
     curl -X POST -G ${API_URL}/token \
     -H 'client-id: '${CLIENT_ID}'' \
     -H 'x-api-key: '${API_KEY}'' \
-    | jq -r '.token')"
+    | jq -r '.tokenResponse')"
+  echo "AUTHORIZATION_TOKEN= ${AUTHORIZATION_TOKEN}"
 
   # Wait until the test run has finished
   TOTAL_ITERATION=200
