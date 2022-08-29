@@ -33,7 +33,7 @@
   while : ; do
      RESULT="$( \
      curl -X GET ${INTEGRATIONS_API_URL}/test-results?id=${TEST_RESULT_ID} \
-     -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
+     -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
      -H 'x-api-key: '${API_KEY}'' \
     )"
     if [ "$RESULT" != null ]; then
