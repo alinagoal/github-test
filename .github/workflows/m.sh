@@ -25,7 +25,7 @@
     curl -X POST -G ${API_URL}/token \
     -H 'client-id: '${CLIENT_ID}'' \
     -H 'x-api-key: '${API_KEY}'' \
-    | jq -r '.tokenResponse.token')"
+    | jq -r '.type.token')"
 
   # Wait until the test run has finished
   TOTAL_ITERATION=200
