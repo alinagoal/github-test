@@ -36,15 +36,8 @@
      curl -X GET ${INTEGRATIONS_API_URL}/test-results?id=${TEST_RESULT_ID} \
      -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
      -H 'x-api-key: '${API_KEY}'' \
-    | jq -r '.[0].finished')"
-    if [ "$RESULT" != null ]; then
-      break;
-    if [ "$I" -ge "$TOTAL_ITERATION" ]; then
-      echo "Exit qualiti execution for taking too long time.";
-      exit 1;
-    fi
-    fi
-      sleep 15;
+    )"
+  echo "Result=${RESULT}"
   done
 
   # # Once finished, verify the test result is created and that its passed
