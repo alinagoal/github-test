@@ -23,8 +23,8 @@
 
   AUTHORIZATION_TOKEN="$( \
     curl -X POST -G ${API_URL}/api-keys/token \
-    -H 'x-api-key: '${API_KEY}'' \
     -H 'client-id: '${CLIENT_ID}'' \
+    -H 'x-api-key: '${API_KEY}'' \
     | jq -r '.token')"
 
   # Wait until the test run has finished
