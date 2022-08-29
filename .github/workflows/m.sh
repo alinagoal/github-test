@@ -51,8 +51,7 @@
   TEST_RUN_RESULT="$( \
     curl -X GET ${INTEGRATIONS_API_URL}/test-results?id=${TEST_RESULT_ID} \
       -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
-      -H 'x-api-key: '${API_KEY}'' \
-   '.status' \
+      | jq -r '.status' \
   )"
   echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
   if [ "$TEST_RUN_RESULT" = "Passed" ]; then
