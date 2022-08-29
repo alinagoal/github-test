@@ -43,7 +43,6 @@
           | jq -r '.status' \
     )"
     sleep 15;
-    I++;
   done
 
   # # Once finished, verify the test result is created and that its passed
