@@ -28,24 +28,28 @@
     | jq -r '.token')"
 
   # Wait until the test run has finished
-  TOTAL_ITERATION=2
+  TOTAL_ITERATION=10
   I=1
   STATUS="Pending"
-  while ["${STATUS}" = "Pending"]
+
+  while [ "${STATUS}" = "Pending" ]
   do
      if [ "$I" -ge "$TOTAL_ITERATION" ]; then
       echo "Exit qualiti execution for taking too long time.";
       exit 1;
     fi
-     STATUS="$( \
-        curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
-          -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
-          | jq -r '.status' \
-    )"
-    {{I=I+1}};
-    sleep 15;
-  done
+    echo "We are on iteration ${I}"
 
+    STATUS="$( \
+      curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
+        -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
+        | jq -r '.status' \
+    )"
+
+    ((I=I+1))
+
+    sleep 1;
+  done
   # # Once finished, verify the test result is created and that its passed
   TEST_RUN_RESULT="$( \
     curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
