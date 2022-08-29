@@ -49,7 +49,7 @@
 
   # # Once finished, verify the test result is created and that its passed
   TEST_RUN_RESULT="$( \
-    curl -X GET ${API_URL}/test-results?id=${TEST_RESULT_ID}\&project_id=${PROJECT_ID} \
+    curl -X GET ${INTEGRATIONS_API_URL}/test-results?id=${TEST_RESULT_ID}\&project_id=${PROJECT_ID} \
       -H 'token: Bearer '$AUTHORIZATION_TOKEN'' \
       -H 'x-api-key: '${API_KEY}'' \
     | jq -r '.[0].status' \
