@@ -42,6 +42,7 @@
           -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
           | jq -r '.status' \
     )"
+    {{I=I+1}};
     sleep 15;
   done
 
