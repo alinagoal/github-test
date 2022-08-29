@@ -54,7 +54,7 @@
       | jq -r '.status' \
   )"
   echo "Qualiti E2E Tests ${TEST_RUN_RESULT}"
-  if [ "$TEST_RUN_RESULT" = *"Passed"* ]; then
+  if [ "$TEST_RUN_RESULT" = "Pending" ]; then
     exit 0;
   fi
   exit 1;
