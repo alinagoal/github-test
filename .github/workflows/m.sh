@@ -30,21 +30,20 @@
   # Wait until the test run has finished
   TOTAL_ITERATION=200
   I=1
-  while : ; do
-     RESULT="$( \
-     curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
-     -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
-     -H 'x-api-key: '${API_KEY}'' \
-    )"
-    if [ "$RESULT" != null ]; then
-      break;
-    fi
-    if [ "$I" -ge "$TOTAL_ITERATION" ]; then
+  STATUS="Pending"
+  while [$STATUS = "Pending"]
+  do
+     if [ "$I" -ge "$TOTAL_ITERATION" ]; then
       echo "Exit qualiti execution for taking too long time.";
       exit 1;
     fi
-      sleep 15;
-      I++;
+     STATUS="$( \
+        curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
+          -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
+          | jq -r '.status' \
+    )"
+    sleep 15;
+    I++;
   done
 
   # # Once finished, verify the test result is created and that its passed
