@@ -51,7 +51,7 @@
   done
 
   echo "Qualiti E2E Tests returned ${STATUS}"
-  if [ "$TEST_RUN_RESULT" = "Passed" ]; then
+  if [ "$STATUS" = "Passed" ]; then
     exit 0;
   fi
   exit 1;
