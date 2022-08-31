@@ -47,7 +47,7 @@
 
     ((I=I+1))
 
-    sleep 1;
+    sleep 15;
   done
 
   echo "Qualiti E2E Tests returned ${STATUS}"
