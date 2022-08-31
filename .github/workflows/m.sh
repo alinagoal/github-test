@@ -27,7 +27,7 @@
     | jq -r '.token')"
 
   # Wait until the test run has finished
-  TOTAL_ITERATION=10
+  TOTAL_ITERATION=200
   I=1
   STATUS="Pending"
 
