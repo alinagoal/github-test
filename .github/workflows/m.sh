@@ -13,12 +13,12 @@
   sudo apt-get install -y jq
 
   #Trigger test run
-#   TEST_RESULT_ID="$( \
-#     curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/events \
-#       -d 'token='$INTEGRATION_JWT_TOKEN''\
-#       -d 'triggeredBy=Deploy'\
-#       -d 'triggerType=automatic'\
-#     | jq -r '.test_result_id')"
+  TEST_RESULT_ID="$( \
+    curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/events \
+      -d 'token='$INTEGRATION_JWT_TOKEN''\
+      -d 'triggeredBy=Deploy'\
+      -d 'triggerType=automatic'\
+    | jq -r '.test_result_id')"
 
   AUTHORIZATION_TOKEN="$( \
    curl -X POST -G ${API_URL}/token \
@@ -40,7 +40,7 @@
     echo "We are on iteration ${I}"
 
     STATUS="$( \
-      curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/10641 \
+      curl -X GET ${INTEGRATIONS_API_URL}/tables/test-results/${TEST_RESULT_ID} \
         -H 'Authorization: Bearer '$AUTHORIZATION_TOKEN'' \
         | jq -r '.status' \
     )"
