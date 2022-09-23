@@ -41,7 +41,7 @@
 
     STATUS="$( \
       curl -X GET ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/test-run-status \
-        -d 'token='$INTEGRATION_JWT_TOKEN''\
+        -H 'token='$INTEGRATION_JWT_TOKEN''\
         -d 'testRunId='$TEST_RUN_ID''\
         | jq -r '.status' \
     )"
