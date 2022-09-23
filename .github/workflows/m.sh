@@ -29,9 +29,9 @@
   # Wait until the test run has finished
   TOTAL_ITERATION=50
   I=1
-  STATUS="Passed"
+  STATUS="Pending"
   
-  while [ "${STATUS}" != "Passed" ]
+  while [ "${STATUS}" = "Pending" ] || [ "${STATUS}" = "Incomplete" ]
   do
      if [ "$I" -ge "$TOTAL_ITERATION" ]; then
       echo "Exit qualiti execution for taking too long time.";
