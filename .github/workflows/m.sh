@@ -20,12 +20,6 @@
       -d 'triggerType=automatic'\
     | jq -r '.test_run_id')"
 
-#   AUTHORIZATION_TOKEN="$( \
-#     curl -X POST -G ${API_URL}/token \
-#     -H 'x-api-key: '${API_KEY}'' \
-#     -H 'client-id: '${CLIENT_ID}'' \
-#     | jq -r '.token')"
-
   # Wait until the test run has finished
   TOTAL_ITERATION=50
   I=1
