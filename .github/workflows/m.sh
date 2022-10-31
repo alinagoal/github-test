@@ -3,7 +3,7 @@
   set -ex
 
   API_KEY='c3e7e92be76bb378'
-  INTEGRATIONS_API_URL='https://3000-qualitiai-qualitiapi-s6up3yk38xc.ws-us69.gitpod.io'
+  INTEGRATIONS_API_URL='https://3000-qualitiai-qualitiapi-dgz3v597vq1.ws-us73.gitpod.io'
   PROJECT_ID='6127'
   CLIENT_ID='8ce1dc9a0f3fd89014044f94082a4c46'
   API_URL='https://3000-qualitiai-qualitiapi-s6up3yk38xc.ws-us69.gitpod.io/public/api-keys'
