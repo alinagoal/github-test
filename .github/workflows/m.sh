@@ -2,20 +2,20 @@
 
   set -ex
 
-  API_KEY='c3e7e92be76bb378'
-  INTEGRATIONS_API_URL='https://3000-qualitiai-qualitiapi-dgz3v597vq1.ws-us73.gitpod.io'
-  PROJECT_ID='6127'
-  CLIENT_ID='8ce1dc9a0f3fd89014044f94082a4c46'
-  API_URL='https://3000-qualitiai-qualitiapi-s6up3yk38xc.ws-us69.gitpod.io/public/api-keys'
-  INTEGRATION_JWT_TOKEN='acf9561e73a8757964ce8c4e04c2abc436724f1ad22cf88343334e609766744741e8fc313f2dd8a23c08b07470cfd68104f80be760ba09d21dbe5a7cffbe1836c52bbd9fa124a0489098b56d084425e6617f9025210b51d22ce64d44bbb092f87fe5f0c116b6678730027128668541b0555ea94aa7921f243c7d30abbbaca391b8b2367f6a1f7ea62edddb346f7e4ae5941031faacce8893db7faf6ace1ff48601d24179a04887695e8858a4c3d1103e1b8acfda801601c0ad1250a876262c83f4a1a9718bc91026b2e184c42e8efe04f7b70e25f13020624c42ca0207bbb8b165710e49dc22863a28af8f965c5af60667eec778b1fb891fd68ec37e2d02a094aa4b779f64f7d4a2f4eabcb5d2f30443|f3ae8d55afc77c347672a5f1c8f42ad8|3c5fa0eded3f8bd3e0609e365132b386'
+  API_KEY='275583b17e83b3b7'
+  BASE_API_URL='https://3000-qualitiai-qualitiapi-xu780dcs2ks.ws-us73.gitpod.io'
+  PROJECT_ID='6232'
+  CLIENT_ID='c492aa830fc7f4718d0b3f038266e5e4'
+  API_KEYS_URL='https://3000-qualitiai-qualitiapi-xu780dcs2ks.ws-us73.gitpod.io/public/api-keys'
+  API_JWT_TOKEN ='c7eb9849d07254c7179eb2a2339d6e2430f8938eb392b4ed58de5357aabae3f1056e939240419034972a0f06d8c404bfd60bb8c991c7db42f41cb2361e055448513ef82315cb2068061f45745b08e0f91d346c2127c0dd76edc5703b32ecf51f4890e2997a0204560bf7ab6140dd9c22159376f9a584cf46df8b0150467146760b1e20837cee8a90e21f5e049d51f45ca997f52a270519b93621729586f9b14029e6e549abb936ead8562a07a991fb59cc78596de25de20bc87cc6a27f1d5b95a29f87a90db258eba5cc365760e9d18ec24bfedb7919d7a84fd2724021f1042114a691f7f1e15126f25801491a91dcbf14279e88ec8cbd69084591dcc6721c138285dfcf9aef6ab9499c5a7e7acff740|947060d8d59c3749ce193d7171fbec86|2696b92e9808687802f53850948f67b2'
 
   sudo apt-get update -y
   sudo apt-get install -y jq
 
   #Trigger test run
   TEST_RUN_ID="$( \
-    curl -X POST -G ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/trigger-test-run \
-      -d 'token='$INTEGRATION_JWT_TOKEN''\
+    curl -X POST -G ${BASE_API_URL}/integrations/github/${PROJECT_ID}/trigger-test-run \
+      -d 'token='$API_JWT_TOKEN''\
       -d 'triggeredBy=Deploy'\
       -d 'triggerType=automatic'\
     | jq -r '.test_run_id')"
@@ -25,7 +25,7 @@
   I=1
   STATUS="Pending"
   
-  while [ "${STATUS}" = "Pending" ] || [ "${STATUS}" = "Incomplete" ]
+  while [ "${STATUS}" = "Pending" ]
   do
      if [ "$I" -ge "$TOTAL_ITERATION" ]; then
       echo "Exit qualiti execution for taking too long time.";
@@ -34,7 +34,7 @@
     echo "We are on iteration ${I}"
 
     STATUS="$( \
-      curl -X GET ${INTEGRATIONS_API_URL}/integrations/github/${PROJECT_ID}/test-run-status?token=${INTEGRATION_JWT_TOKEN}\&testRunId=${TEST_RUN_ID} \
+      curl -X GET ${BASE_API_URL}/integrations/github/${PROJECT_ID}/test-run-status?token=${API_JWT_TOKEN}\&testRunId=${TEST_RUN_ID} \
         | jq -r '.status' \
     )"
 
@@ -48,3 +48,4 @@
     exit 0;
   fi
   exit 1;
+  
