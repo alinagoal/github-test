@@ -22,4 +22,4 @@ jobs:
       - name: Run our github integration qualiti-script test
         run: |
            chmod +x .github/workflows/m.sh
-           . .github/workflows/m.sh {{secrets.API_KEY}}{{secrets.CLIENT_ID}}
+           . .github/workflows/m.sh {{secrets.API_KEY}} {{secrets.CLIENT_ID}}
