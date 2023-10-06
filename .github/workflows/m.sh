@@ -25,7 +25,7 @@ curl -X POST -G "$BASE_API_URL/integrations/github/$PROJECT_ID/trigger-test-run"
   -d 'triggerType=Deploy'\
 | jq -r '.test_run_ids[0]')"
 
-if [ -n "$TEST_RUN_ID" ]; then
+if [ "$TEST_RUN_ID" == null -o -z "$TEST_RUN_ID" ]; then
   echo 'No test trigger found.'
   exit 0
 fi
