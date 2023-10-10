@@ -29,4 +29,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           chmod +x .github/workflows/m.sh
-          . .github/workflows/m.sh
+
+          # Replace the placeholders with the provided credentials in your Qualiti AI Portal. It is advised to use best practices with sensitive credentials
+          . .github/workflows/m.sh 730d95cc11f9b633 6a875ed1f81e3ac96b65dba7a9fb61c0
