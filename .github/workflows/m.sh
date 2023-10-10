@@ -24,7 +24,7 @@ AUTH_TOKEN="$( \
 # Trigger test run
 TEST_RUN_ID="$( \
 curl -X POST -G "$BASE_API_URL/integrations/github/278/trigger-test-run" \
-  -d 'token='$API_JWT_TOKEN''\
+  -d 'token='$AUTH_TOKEN''\
   -d 'triggeredBy=automatic'\
   -d 'triggerType=Deploy'\
 | jq -r '.test_run_ids[0]')"
@@ -47,7 +47,7 @@ fi
 echo "We are on iteration $I"
 
 STATUS="$( \
-  curl -X GET "$BASE_API_URL/integrations/github/278/test-run-status?token=$API_JWT_TOKEN&testRunId=$TEST_RUN_ID" \
+  curl -X GET "$BASE_API_URL/integrations/github/278/test-run-status?token=$AUTH_TOKEN&testRunId=$TEST_RUN_ID" \
     | jq -r '.status' \
 )"
 
