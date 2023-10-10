@@ -11,8 +11,8 @@ set -ex
 # Does our test-run-status passing in test_run_id and token still work with our new setup of using test case history items?
 # Update all other sh files to do a similar setup
 
-API_KEY=$1
-CLIENT_ID=$2
+APIKEY=$1
+CLIENTID=$2
 BASE_API_URL='https://api.qualiti-dev.com'
 
 if hash apt-get 2>/dev/null; then
