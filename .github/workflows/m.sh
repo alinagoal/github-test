@@ -17,8 +17,8 @@ fi
 
 AUTH_TOKEN="$( \
   curl -X POST -G "$BASE_API_URL/public/api-keys/token" \
-  -H "x-api-key: $API_KEY" \
-  -H "client-id: $CLIENT_ID" \
+  -H "x-api-key: $APIKEY" \
+  -H "client-id: $CLIENTID" \
   | jq -r '.token')"
 
 # Trigger test run
