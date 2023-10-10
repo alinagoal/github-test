@@ -2,9 +2,9 @@
 
 set -ex
 
-APIKEY=$1
-CLIENTID=$2
-BASE_API_URL='https://3000-qualitiai-qualitiapi-1rgeh4w5a8r.ws-us105.gitpod.io'
+API_KEY=$1
+CLIENT_ID=$2
+BASE_API_URL='https://api.qualiti-dev.com'
 
 if hash apt-get 2>/dev/null; then
   if [ "$(id -u)" -ne 0 ] && hash sudo 2>/dev/null; then
@@ -17,8 +17,8 @@ fi
 
 AUTH_TOKEN="$( \
   curl -X POST -G "$BASE_API_URL/public/api-keys/token" \
-  -H "x-api-key: $APIKEY" \
-  -H "client-id: $CLIENTID" \
+  -H "x-api-key: $API_KEY" \
+  -H "client_id: $CLIENT_ID" \
   | jq -r '.token')"
 
 # Trigger test run
