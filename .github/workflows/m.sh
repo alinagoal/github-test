@@ -13,7 +13,7 @@ set -ex
 
 API_KEY=$1
 CLIENT_ID=$2
-BASE_API_URL='https://3000-qualitiai-qualitiapi-tktt0ncwe8g.ws-us105.gitpod.io'
+BASE_API_URL='https://api.qualiti-dev.com'
 
 if hash apt-get 2>/dev/null; then
   if [ "$(id -u)" -ne 0 ] && hash sudo 2>/dev/null; then
