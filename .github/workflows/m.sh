@@ -2,9 +2,18 @@
 
 set -ex
 
+#######################################################################################
+# Trigger a test run from a plan using bash                                           #
+# Usage: ./qualiti-script.sh <api-key> <client-id>                                    #
+#######################################################################################
+
+# TODO:
+# Does our test-run-status passing in test_run_id and token still work with our new setup of using test case history items?
+# Update all other sh files to do a similar setup
+
 API_KEY=$1
 CLIENT_ID=$2
-BASE_API_URL='https://3000-qualitiai-qualitiapi-1rgeh4w5a8r.ws-us105.gitpod.io'
+BASE_API_URL='https://3000-qualitiai-qualitiapi-tktt0ncwe8g.ws-us105.gitpod.io'
 
 if hash apt-get 2>/dev/null; then
   if [ "$(id -u)" -ne 0 ] && hash sudo 2>/dev/null; then
