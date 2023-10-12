@@ -13,7 +13,7 @@ set -ex
 
 API_KEY=$1
 CLIENT_ID=$2
-BASE_API_URL='https://api.qualiti.ai'
+BASE_API_URL='https://api.qualiti-dev.com'
 
 if hash apt-get 2>/dev/null; then
   if [ "$(id -u)" -ne 0 ] && hash sudo 2>/dev/null; then
@@ -27,13 +27,13 @@ fi
 AUTH_TOKEN="$( \
   curl -X POST -G "$BASE_API_URL/public/api-keys/token" \
   -H "x-api-key: $API_KEY" \
-  -H "client_id: $CLIENT_ID" \
+  -H "client-id: $CLIENT_ID" \
   | jq -r '.token')"
 
 # Trigger test run
 TEST_RUN_ID="$( \
-curl -X POST -G "$BASE_API_URL/integrations/github/$PROJECT_ID/trigger-test-run" \
-  -d 'token='$API_JWT_TOKEN''\
+curl -X POST -G "$BASE_API_URL/integrations/github/1/trigger-test-run" \
+  -d 'token='$AUTH_TOKEN''\
   -d 'triggeredBy=automatic'\
   -d 'triggerType=Deploy'\
 | jq -r '.test_run_ids[0]')"
@@ -56,7 +56,7 @@ fi
 echo "We are on iteration $I"
 
 STATUS="$( \
-  curl -X GET "$BASE_API_URL/integrations/github/$PROJECT_ID/test-run-status?token=$API_JWT_TOKEN&testRunId=$TEST_RUN_ID" \
+  curl -X GET "$BASE_API_URL/integrations/github/1/test-run-status?token=$AUTH_TOKEN&testRunId=$TEST_RUN_ID" \
     | jq -r '.status' \
 )"
 
