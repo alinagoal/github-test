@@ -1,0 +1,13 @@
+name: "PR Merged CI (Deploy All)"
+
+on:
+  workflow_dispatch:
+
+      - name: Promote Artifacts (Bronze to Silver)
+        if: grep Lambdas tools/artifacts.tmp
+        run: echo Lambdas
+
+      - name: Promote Artifacts (Bronze to Silver Backfill)
+        uses: peter-evans/repository-dispatch@v1
+        if: grep Jobs tools/artifacts.tmp
+        run: echo Jobs
