@@ -19,9 +19,9 @@ jobs:
             echo "lambdas=$LAMBDAS" >> $GITHUB_OUTPUT
 
       - name: Promote Artifacts (Bronze to Silver)
-        if: steps.artifact.outputs.lambdas == 'Lambdas'
-        run: echo Lambdas
+        # if: steps.artifact.outputs.lambdas == 'Lambdas'
+        run: echo ${{ steps.artifact.outputs.lambdas }}
 
       - name: Promote Artifacts (Bronze to Silver Backfill)
-        if: steps.artifact.outputs.lambdas == 'potato'
-        run: echo Jobs
+        # if: steps.artifact.outputs.job == 'potato'
+        run: echo ${{ steps.artifact.outputs.jobs }}
