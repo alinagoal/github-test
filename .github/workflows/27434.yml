@@ -13,15 +13,15 @@ jobs:
       - name: Detect Build Artifact(s)
         id: artifact
         run: |
-            export JOBS=$(grep Lambdas tools/artifacts.tmp)
-            export LAMBDAS=$(grep Jobs tools/artifacts.tmp)
+            export JOBS=$(grep Jobs tools/artifacts.tmp)
+            export LAMBDAS=$(grep Lambdas tools/artifacts.tmp)
             echo "jobs=$JOBS" >> $GITHUB_OUTPUT
             echo "lambdas=$LAMBDAS" >> $GITHUB_OUTPUT
 
       - name: Promote Artifacts (Bronze to Silver)
-        if: ${{ steps.artifact.outputs.lambdas }} == 'Lambdas'
+        if: steps.artifact.outputs.lambdas == 'Lambdas'
         run: echo ${{ steps.artifact.outputs.lambdas }}
 
       - name: Promote Artifacts (Bronze to Silver Backfill)
-        if: ${{ steps.artifact.outputs.job }} == 'potato'
+        if: steps.artifact.outputs.job == 'potato'
         run: echo ${{ steps.artifact.outputs.jobs }}
