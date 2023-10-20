@@ -3,6 +3,10 @@ name: "PR Merged CI (Deploy All)"
 on:
   workflow_dispatch:
 
+jobs:
+  bronzeDataService:
+    steps:
+
       - name: Promote Artifacts (Bronze to Silver)
         if: $(grep Lambdas tools/artifacts.tmp) == Lambdas
         run: echo Lambdas
