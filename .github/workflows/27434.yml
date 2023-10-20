@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
       - name: Promote Artifacts (Bronze to Silver)
-        if: grep Lambdas tools/artifacts.tmp
+        if: $(grep Lambdas tools/artifacts.tmp) == Lambdas
         run: echo Lambdas
 
       - name: Promote Artifacts (Bronze to Silver Backfill)
         uses: peter-evans/repository-dispatch@v1
-        if: grep Jobs tools/artifacts.tmp
+        if: $(grep Jobs tools/artifacts.tmp) == Jobs
         run: echo Jobs
