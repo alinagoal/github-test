@@ -5,6 +5,7 @@ on:
 
 jobs:
   bronzeDataService:
+    runs-on: ubuntu-latest
     steps:
 
       - name: Promote Artifacts (Bronze to Silver)
