@@ -13,8 +13,8 @@ jobs:
       - name: Detect Build Artifact(s)
         id: artifact
         run: |
-            export JOBS=$(grep Lambdas tools/artifacts.tmp); exit 0
-            export LAMBDAS=$(grep Jobs tools/artifacts.tmp); exit 0
+            export JOBS=$(grep Lambdas tools/artifacts.tmp)
+            export LAMBDAS=$(grep Jobs tools/artifacts.tmp)
             echo "jobs=$JOBS" >> $GITHUB_OUTPUT
             echo "lambdas=$LAMBDAS" >> $GITHUB_OUTPUT
 
