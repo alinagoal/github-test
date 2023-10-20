@@ -12,6 +12,5 @@ jobs:
         run: echo Lambdas
 
       - name: Promote Artifacts (Bronze to Silver Backfill)
-        uses: peter-evans/repository-dispatch@v1
         if: $(grep Jobs tools/artifacts.tmp) == Jobs
         run: echo Jobs
