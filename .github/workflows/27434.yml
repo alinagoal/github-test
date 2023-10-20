@@ -9,9 +9,9 @@ jobs:
     steps:
 
       - name: Promote Artifacts (Bronze to Silver)
-        if: $(grep Lambdas tools/artifacts.tmp) == Lambdas
+        if: cat tools/artifacts.tmp | grep Lambdas == 'Lambdas'
         run: echo Lambdas
 
       - name: Promote Artifacts (Bronze to Silver Backfill)
-        if: $(grep Jobs tools/artifacts.tmp) == Jobs
+        if: cat tools/artifacts.tmp | grep Jobs == 'Jobs'
         run: echo Jobs
